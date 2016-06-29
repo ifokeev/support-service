@@ -1,0 +1,12 @@
+development:
+  clients:
+    default:
+      database: support_dev
+      hosts:
+        - localhost:27017
+production:
+  clients:
+    default:
+      database: support_prod
+      hosts:
+        - mongo:27017
