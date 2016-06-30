@@ -49,6 +49,11 @@ module Support
             Ticket.find(params[:id]).close!
           end
 
+          desc 'Set ticket comments as read'
+          put 'read' do
+            Ticket.find(params[:id]).read!
+          end
+
           desc 'Add a comment to the ticket'
           params do
             requires :content, type: String
