@@ -6,10 +6,10 @@ class Ticket
   include Mongoid::Timestamps::Updated
   include AASM
 
-  embeds_many :comments, cascade_callbacks: true
+  embeds_many :comments, cascade_callbacks: true, counter_cache: true
 
   field :title, type: String
-  field :readed_count, type: Integer, default: 0
+  field :comments_readed_count, type: Integer, default: 0
 
   field :state, type: String
 
@@ -28,5 +28,5 @@ class Ticket
   end
 
   index 'state' => 1
-  index 'comments.user_id' => 1
+  index 'comments.author_id' => 1
 end

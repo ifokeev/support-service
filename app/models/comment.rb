@@ -5,8 +5,8 @@ class Comment
 
   embedded_in :ticket
 
-  field :user_id, type: String
+  field :author_id, type: String
   field :content
 
-  validates_presence_of :user_id, :content
+  validates_presence_of :author_id, :content
 end

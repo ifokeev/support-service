@@ -17,14 +17,14 @@ module Support
         params do
           requires :title, type: String
           requires :content, type: String
-          requires :user_id, type: String
-          optional :user_meta, type: Hash
+          requires :author_id, type: String
+          optional :author_meta, type: Hash
         end
         post do
           Ticket.create(title: params[:title], comments: [
             {
-              user_id: params[:user_id],
-              user_meta: params[:user_meta],
+              author_id: params[:author_id],
+              author_meta: params[:author_meta],
               content: params[:content]
             }
           ])
@@ -52,11 +52,11 @@ module Support
           desc 'Add a comment to the ticket'
           params do
             requires :content, type: String
-            requires :user_id, type: String
-            optional :user_meta, type: Hash
+            requires :author_id, type: String
+            optional :author_meta, type: Hash
           end
           post 'comment' do
-	    comment = Comment.new(user_id: params[:user_id], user_meta: params[:user_meta], content: params[:content])
+	    comment = Comment.new(author_id: params[:author_id], author_meta: params[:author_meta], content: params[:content])
 
             ticket = Ticket.find(params[:id])
             ticket.state = 'pending'
