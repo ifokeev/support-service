@@ -1,0 +1,28 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+API	/Users/user/Developer/rails/hyip/support/server/app/application.rb	/^  class API < Grape::API$/;"	c	language:Ruby	class:Support
+API	app/application.rb	/^  class API < Grape::API$/;"	c	class:Support
+APIv1	/Users/user/Developer/rails/hyip/support/server/app/api/v1/tickets.rb	/^  module APIv1$/;"	m	language:Ruby	class:Support
+APIv1	app/api/v1.rb	/^  module APIv1$/;"	m	class:Support
+APIv1	app/api/v1/tickets.rb	/^  module APIv1$/;"	m	class:Support
+Base	app/api/v1.rb	/^    class Base < Grape::API$/;"	c	class:Support.APIv1
+Comment	app/models/comment.rb	/^class Comment$/;"	c
+Grape	/Users/user/Developer/rails/hyip/support/server/app/application.rb	/^    class Grape::Middleware::Error$/;"	c	language:Ruby	class:Support.API
+Grape	app/application.rb	/^    class Grape::Middleware::Error$/;"	c	class:Support.API
+Support	/Users/user/Developer/rails/hyip/support/server/app/api/v1/tickets.rb	/^module Support$/;"	m	language:Ruby
+Support	/Users/user/Developer/rails/hyip/support/server/app/application.rb	/^module Support$/;"	m	language:Ruby
+Support	app/api/v1.rb	/^module Support$/;"	m
+Support	app/api/v1/tickets.rb	/^module Support$/;"	m
+Support	app/application.rb	/^module Support$/;"	m
+Ticket	app/models/ticket.rb	/^class Ticket$/;"	c
+Tickets	/Users/user/Developer/rails/hyip/support/server/app/api/v1/tickets.rb	/^    class Tickets < Grape::API$/;"	c	language:Ruby	class:Support.APIv1
+Tickets	app/api/v1/tickets.rb	/^    class Tickets < Grape::API$/;"	c	class:Support.APIv1
+cache_comments_count	app/models/ticket.rb	/^  def cache_comments_count $/;"	f	class:Ticket
+cache_comments_read_count	app/models/ticket.rb	/^  def cache_comments_read_count $/;"	f	class:Ticket
+error_message	/Users/user/Developer/rails/hyip/support/server/app/application.rb	/^      def error_message(code, text)$/;"	f	language:Ruby	class:Support.API.Grape
+error_message	app/application.rb	/^      def error_message(code, text)$/;"	f	class:Support.API.Grape
+read!	app/models/ticket.rb	/^  def read!$/;"	f	class:Ticket

@@ -8,7 +8,7 @@ module Support
         params do
           requires :_filters, type: JSON, allow_blank: false
           optional :_sort, type: JSON, allow_blank: false
-	end
+        end
         get do
           Ticket.where(params[:_filters]).sort(params[:_sort])
         end
@@ -61,7 +61,7 @@ module Support
             optional :author_meta, type: Hash
           end
           post 'comment' do
-	    comment = Comment.new(author_id: params[:author_id], author_meta: params[:author_meta], content: params[:content])
+            comment = Comment.new(author_id: params[:author_id], author_meta: params[:author_meta], content: params[:content])
 
             ticket = Ticket.find(params[:id])
             ticket.state = 'pending'

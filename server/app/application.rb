@@ -11,7 +11,7 @@ module Support
   class API < Grape::API
     class Grape::Middleware::Error
       def error_message(code, text)
-	{ :error => { :code => code, :message => text } }.to_json
+        { :error => { :code => code, :message => text } }.to_json
       end
     end
 
@@ -25,7 +25,7 @@ module Support
     rescue_from AASM::InvalidTransition do |e|
       rack_response(error_message(403, 'Invalid transition'), 403)
     end
- 
+
     desc 'Just test the API'
     get :status do
       { status: 'ok' }
