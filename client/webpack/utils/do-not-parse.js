@@ -1,18 +1,18 @@
 export default ({
-	name,
-	path
+  name,
+  path
 }) => {
-	const alias = {};
-	alias[name] = path;
+  const alias = {};
+  alias[name] = path;
 
-	return {
-		module: {
-			noParse: [
-				path
-			]
-		},
-		resolve: {
-			alias
-		}
-	};
+  return {
+    module: {
+      noParse: [
+        path
+      ]
+    },
+    resolve: {
+      alias
+    }
+  };
 }

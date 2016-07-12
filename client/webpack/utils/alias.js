@@ -1,13 +1,13 @@
 export default ({
-	name,
-	path
+  name,
+  path
 }) => {
-	const alias = {};
-	alias[name] = path;
+  const alias = {};
+  alias[name] = path;
 
-	return {
-		resolve: {
-			alias
-		}
-	};
+  return {
+    resolve: {
+      alias
+    }
+  };
 }

@@ -1,7 +1,7 @@
 const entry = {
-	entry: [
-		'babel-polyfill'
-	]
+  entry: [
+    'babel-polyfill'
+  ]
 };
 
 export default entry;
