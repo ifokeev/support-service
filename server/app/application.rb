@@ -7,23 +7,26 @@ Dir["#{File.dirname(__FILE__)}/api/**/*.rb"].each { |f| require f }
 
 Mongoid.load! File.expand_path('config/mongoid.yml', File.dirname(__FILE__))
 
+module JSendErrorFormatter
+  def self.call message, backtrace, options, env
+    p backtrace
+    { error: { code: backtrace, message: message } }.to_json
+  end
+end
+
 module Support
   class API < Grape::API
-    class Grape::Middleware::Error
-      def error_message(code, text)
-        { :error => { :code => code, :message => text } }.to_json
-      end
-    end
+    error_formatter :json, JSendErrorFormatter
 
     format :json
     prefix :api
 
     rescue_from Mongoid::Errors::DocumentNotFound do |e|
-      rack_response(error_message(404, 'Not found'), 404)
+      error! 'Not found', 404
     end
 
     rescue_from AASM::InvalidTransition do |e|
-      rack_response(error_message(403, 'Invalid transition'), 403)
+      error! 'Invalid transition', 403
     end
 
     desc 'Just test the API'

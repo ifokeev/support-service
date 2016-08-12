@@ -6,11 +6,13 @@ module Support
 
         desc 'Returns all tickets'
         params do
-          requires :_filters, type: JSON, allow_blank: false
-          optional :_sort, type: JSON, allow_blank: false
+          optional :_filters, type: JSON, allow_blank: false
+          optional :_sorts, type: JSON, allow_blank: false
         end
         get do
-          Ticket.where(params[:_filters]).sort(params[:_sort])
+          tickets = Ticket.where(params[:_filters]).sort(params[:_sorts])
+
+          { data: { items: tickets } }
         end
 
         desc 'Create a ticket'
@@ -21,13 +23,15 @@ module Support
           optional :author_meta, type: Hash
         end
         post do
-          Ticket.create(title: params[:title], comments: [
+          ticket = Ticket.create(title: params[:title], comments: [
             {
               author_id: params[:author_id],
               author_meta: params[:author_meta],
               content: params[:content]
             }
           ])
+
+          { data: { items: [ ticket ] } }
         end
 
         desc 'Return a ticket'
@@ -35,23 +39,33 @@ module Support
           requires :id, type: String
         end
         route_param :id do
+          before {
+            @ticket = Ticket.find(params[:id])
+          }
+
           get do
-            Ticket.find(params[:id])
+            { data: { items: [ @ticket ] } }
           end
 
           desc 'Reopen a ticket'
           put 'reopen' do
-            Ticket.find(params[:id]).reopen!
+            @ticket.reopen!
+
+            { data: { items: [ @ticket ] } }
           end
 
           desc 'Close a ticket'
           put 'close' do
-            Ticket.find(params[:id]).close!
+            @ticket.close!
+
+            { data: { items: [ @ticket ] } }
           end
 
           desc 'Set ticket comments as read'
           put 'read' do
-            Ticket.find(params[:id]).read!
+            @ticket.read!
+
+            { data: { items: [ @ticket ] } }
           end
 
           desc 'Add a comment to the ticket'
@@ -63,10 +77,11 @@ module Support
           post 'comment' do
             comment = Comment.new(author_id: params[:author_id], author_meta: params[:author_meta], content: params[:content])
 
-            ticket = Ticket.find(params[:id])
-            ticket.state = 'pending'
-            ticket.comments.push(comment)
-            ticket.save
+            @ticket.state = 'pending'
+            @ticket.comments.push(comment)
+            @ticket.save
+
+            { data: { items: [ @ticket ] } }
           end
         end
 
