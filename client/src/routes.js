@@ -2,8 +2,7 @@ import {
   App,
   Tickets,
   Ticket,
-  Dashboard,
-  NotFound
+  Dashboard
 } from './components';
 
 const DashboardChilds = [{
@@ -27,9 +26,6 @@ const DashboardChilds = [{
 }];
 
 const AppChilds = [{
-  path: '404',
-  component: NotFound
-}, {
   path: 'dashboard',
   name: 'Dashboard',
   indexRoute: {
