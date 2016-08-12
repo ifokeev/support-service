@@ -1,6 +1,6 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-const extractComponentsCSS = new ExtractTextPlugin('components.css');
+const extractComponentsCSS = new ExtractTextPlugin('components.[contenthash].css');
 
 const loaders = {
   resolve: {
@@ -10,7 +10,7 @@ const loaders = {
     loaders: [{
       test: /\.css$/,
       exclude: /node_modules/,
-      loader: extractComponentsCSS.extract('style', 'css')
+      loader: extractComponentsCSS.extract('css!postcss')
     }]
   }
 };

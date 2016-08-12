@@ -1,6 +1,6 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
-const extractAppCSS = new ExtractTextPlugin('app.css');
+const extractAppCSS = new ExtractTextPlugin('app.[contenthash].css');
 
 const loaders = {
   resolve: {
@@ -10,7 +10,7 @@ const loaders = {
     loaders: [{
       test: /\.scss$/,
       exclude: /node_modules/,
-      loader: extractAppCSS.extract('style', 'css', 'sass')
+      loader: extractAppCSS.extract('css!sass!postcss')
     }]
   }
 };

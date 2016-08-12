@@ -9,7 +9,7 @@ import NoErrorsPlugin from 'webpack/lib/NoErrorsPlugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-import ENV from './env';
+import ENV from '../env';
 
 import {
   extractAppCSS
@@ -23,8 +23,9 @@ const plugins = {
   plugins: [
     new NoErrorsPlugin,
     new HtmlWebpackPlugin({
-      template: 'index.ejs',
+      template: './src/index.ejs',
       inject: 'body',
+      favicon: './static/favicon.ico',
       minify: {
         collapseWhitespace: true
       }
@@ -38,7 +39,7 @@ const plugins = {
     extractAppCSS,
     extractComponentsCSS,
     new DedupePlugin,
-    new CommonsChunkPlugin("commons.chunk.js"),
+    new CommonsChunkPlugin("commons.chunk.[hash].js"),
     new OccurrenceOrderPlugin,
     new UglifyJsPlugin({
       compress: {

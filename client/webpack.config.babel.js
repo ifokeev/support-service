@@ -1,3 +1,5 @@
+import path from 'path';
+
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 
@@ -6,6 +8,9 @@ import jsonLoader from './webpack/json-loader';
 import cssLoader from './webpack/css-loader';
 import sassLoader from './webpack/sass-loader';
 import jsxLoader from './webpack/jsx-loader';
+import fileLoader from './webpack/file-loader';
+
+import postcss from './webpack/postcss';
 
 import plugins from './webpack/plugins';
 
@@ -14,22 +19,21 @@ import devServer from './webpack/dev-server';
 import alias from './webpack/utils/alias';
 import chunk from './webpack/utils/chunk';
 
-import ENV from './webpack/env';
+import ENV from './env';
 
 let config = {
-  context: `${__dirname}/src`,
+  root: path.resolve(__dirname),
   entry: {
-    client: ['./client']
+    client: ['./src/client']
   },
   output: {
-    path: `${__dirname}/build`,
+    path: './build',
     publicPath: '/',
-    filename: '[name].bundle.js',
+    filename: '[name].bundle.[hash].js',
   },
   resolve: {
     extensions: ['', '.js'],
     modulesDirectories: [
-      `${__dirname}/node_modules`,
       'node_modules'
     ]
   },
@@ -44,27 +48,33 @@ config = merge(config, jsonLoader);
 config = merge(config, cssLoader);
 config = merge(config, sassLoader);
 config = merge(config, jsxLoader);
+config = merge(config, fileLoader);
+
+config = merge(config, postcss);
 
 config = merge(config, plugins);
 
-//optimization
-config = merge(config, alias({
-  name: 'react',
-  path: `${__dirname}/node_modules/react/dist/react.min.js`
-}));
+// if (ENV === 'production') {
+//   //optimization
+//   config = merge(config, alias({
+//     name: 'react',
+//     path: `${__dirname}/node_modules/react/dist/react.min.js`
+//   }));
+//
+//   config = merge(config, alias({
+//     name: 'react-dom',
+//     path: `${__dirname}/node_modules/react-dom/dist/react-dom.min.js`
+//   }));
+//
+//   config = merge(config, alias({
+//     name: 'react-router',
+//     path: `${__dirname}/node_modules/react-router/umd/ReactRouter.min.js`
+//   }));
+//
+//   config = merge(config, chunk({
+//     react: ['react', 'react-dom', 'react-router']
+//   }));
+// }
 
-config = merge(config, alias({
-  name: 'react-dom',
-  path: `${__dirname}/node_modules/react-dom/dist/react-dom.min.js`
-}));
-
-config = merge(config, alias({
-  name: 'react-router',
-  path: `${__dirname}/node_modules/react-router/umd/ReactRouter.min.js`
-}));
-
-config = merge(config, chunk({
-  react: ['react', 'react-dom', 'react-router']
-}));
-
+console.log(config);
 export default config;
