@@ -1,0 +1,24 @@
+.comment {
+  border: 1px solid #edeef3;
+  padding: 20px 0;
+  background: #fff;
+
+  &.first {
+    border-top: none;
+    background: #f9fafc;
+  }
+
+  &__author {
+    border-right: 1px solid #edeef3;
+  }
+
+  &__body {
+    padding: 0 20px;
+  }
+
+  &__date {
+    margin-top: 10px;
+    color: #aba6ad;
+    font-size: 0.9em;
+  }
+}

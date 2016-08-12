@@ -1,0 +1,10 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css');
+
+@import "~react-progress-2/main.css";
+
+.sidebar {
+  margin-top: 10px;
+}
+
+@import 'partials/ticket.scss';
+@import 'partials/comment.scss';

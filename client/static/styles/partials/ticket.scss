@@ -1,0 +1,17 @@
+.ticket {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  &__header {
+    padding-top: 20px;
+  }
+  &__comments {
+    padding-bottom: 20px;
+  }
+
+  &__info {
+    padding: 10px;
+    text-align: center;
+    background: #f9fafc;
+  }
+}
