@@ -2,8 +2,8 @@ import React, {
   Component
 } from 'react';
 
-import TicketBase from '../organism/TicketBase';
-import Comments from './Comments';
+import TicketBase from './TicketBase';
+import Comments from '../molecules/Comments';
 
 import moment from 'moment';
 

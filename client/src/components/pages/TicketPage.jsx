@@ -15,7 +15,7 @@ import {
   loadTicket
 } from '../../api/tickets'
 
-import Ticket from '../molecules/Ticket';
+import Ticket from '../organism/Ticket';
 import Breadcrumbs from '../templates/Breadcrumbs';
 
 @provideHooks({
