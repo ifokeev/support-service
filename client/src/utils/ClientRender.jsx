@@ -26,7 +26,6 @@ import {
 } from 'mobx-react';
 
 import mobxstore from 'mobx-store';
-import localstorage from './localStorage';
 
 import routes from '../routes';
 
