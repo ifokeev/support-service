@@ -1,23 +1,23 @@
-require 'rake'
-require 'bundler'
-Bundler.setup
+ENV['RACK_ENV'] ||= 'development'
 
-require 'grape'
+require 'bundler'
+Bundler.require :default, ENV['RACK_ENV'].to_sym
 
 desc 'load the App environment.'
-task :environment do
-  require File.expand_path('app/application', File.dirname(__FILE__))
-end
+require File.expand_path('app/application', File.dirname(__FILE__))
 
 namespace :grape do
   desc "show API routes"
-  task routes: :environment do
+  task :routes do
     mapping = method_mapping
 
-    grape_klasses = ObjectSpace.each_object(Class).select { |klass| klass < Grape::API }
-    routes = grape_klasses.
-      flat_map(&:routes).
-      uniq { |r| r.send(mapping[:path]) + r.send(mapping[:method]).to_s }
+    grape_klasses = ObjectSpace.each_object(Class).select {
+      |klass| klass < Grape::API
+    }
+
+    routes = grape_klasses.flat_map(&:routes).uniq {
+      |r| r.send(mapping[:path]) + r.send(mapping[:method]).to_s
+    }
 
     method_width, path_width, version_width, desc_width = widths(routes, mapping)
 
