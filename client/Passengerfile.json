@@ -1,0 +1,7 @@
+{
+  "port": "3000",
+  "engine": "builtin",
+  "environment": "production",
+  "app_type": "node",
+  "startup_file": "server.babel.js"
+}
