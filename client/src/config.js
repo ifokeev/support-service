@@ -1,4 +1,4 @@
-export const coreUrl = `http://localhost:9292`;
+export const coreUrl = `http://support-service.vanya.cc`;
 
 export const initialState = {
   tickets: {
